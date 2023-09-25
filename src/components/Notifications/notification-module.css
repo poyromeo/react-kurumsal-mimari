@@ -1,0 +1,114 @@
+.notification-box {
+  margin-right: 7px;
+  box-shadow: 0 0 20px 0 #bbb;
+  border: 0.5px solid #aaa;
+  border-radius: 5px;
+  padding: 3px;
+  height: 35px;
+  background-color: #fff;
+}
+
+.notification__heading {
+  color: #000000;
+  font-weight: 700;
+  font-size: 13px;
+  margin: 10px 0px 0px 10px;
+  margin-top: 0px;
+}
+.mark__read {
+  color: #6274ff;
+  text-decoration: none;
+  padding: 0;
+  margin: 0 !important;
+  font-weight: 600;
+}
+:where(.css-dev-only-do-not-override-1vr7spz).ant-layout-header {
+  line-height: 25px !important;
+}
+
+.mark__read:hover {
+  text-decoration: none !important;
+  color: rgb(99, 99, 163);
+}
+
+.notifications .container .header .header-option {
+  display: block !important;
+  overflow: visible !important;
+}
+
+.notifications .container .header .header-option:hover {
+  text-decoration: none !important;
+}
+.notification-box .notifications .container {
+  z-index: 10;
+}
+
+.notification-box .notifications .icon .count {
+  height: 21px;
+  width: 21px;
+  max-width: 21px;
+  min-height: 21px;
+  right: 0;
+  font-size: 14px;
+  background-color: #ff6969;
+  font-weight: 600;
+  right: -17px;
+  position: relative;
+  top: -41px;
+}
+
+.notification-box .notifications .container .items .card {
+  z-index: 3;
+  background: #f5f6ff;
+  margin: 10px 5px 10px 10px;
+  padding: 10px !important;
+  border-left: 2.5px solid green !important;
+}
+
+.notifications .container {
+  border-radius: 5px;
+}
+.notifications .container .header {
+  border-bottom: 1px solid rgb(202, 197, 197);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.displayflex {
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-direction: column;
+}
+.username {
+  font-weight: 580;
+}
+
+.call {
+  margin-top: 5px;
+  color: #fd3d62;
+  font-size: 14px;
+}
+.call__message {
+  color: #959db2;
+  float: left;
+}
+.time {
+  font-size: 12px !important;
+}
+
+.notification-box .notifications .container .items .card .content .message {
+  width: 100%;
+}
+
+.notification-box .notifications .container .items .options {
+  display: none;
+}
+
+.notification-box .notifications .icon .image {
+  height: 27px;
+  width: 27px;
+}
+.notification-box .notifications .icon {
+  all: unset;
+}

@@ -1,0 +1,79 @@
+.ant-switch {
+  height: 22px !important;
+  border-radius: 20px !important;
+  width: 40px !important;
+}
+.dropdown {
+  position: relative;
+  perspective: 200px;
+}
+
+.dropdown button {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  height: 37px;
+  color: #191919;
+  background: transparent;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+
+.dropdown > button {
+  position: relative;
+  z-index: 2;
+  transition: 0.3s;
+  border: 0.5px solid #bbb;
+  box-shadow: 0 0 20px 0 #bbb;
+  background-color: #fff;
+}
+
+.menu {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+  height: 114px;
+  opacity: 0;
+  transform-origin: 100% 0%;
+  scale: 0;
+  visibility: hidden;
+  border-radius: 8px;
+  transition: 0.4s;
+
+  box-shadow: 0 0 20px 0 #ccc;
+  border: 0.5px solid #aaa;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.dropdown.open .menu {
+  scale: 1;
+  right: 0;
+  top: 72px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu button {
+  border: 0;
+  width: 100%;
+  height: 56px;
+  border-radius: 0;
+}
+
+.menu button:hover {
+  background: rgba(0, 0, 0, 0.26);
+}
+
+.chevron {
+  margin-left: auto;
+  transition: 0.4s;
+}
+
+.dropdown.open .chevron {
+  rotate: -180deg;
+}
