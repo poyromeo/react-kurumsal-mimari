@@ -51,7 +51,7 @@ class LayoutCls extends React.PureComponent {
             collapsed={this.state.collapsed}
             theme={this.state.theme}
           />
-          <ContentCls />
+          <ContentCls  />
         </Layout>
         <FooterCls />
       </Layout>

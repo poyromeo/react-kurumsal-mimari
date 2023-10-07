@@ -1,0 +1,7 @@
+.ant-mini-calendar {
+  background: #e0e0e0;
+  box-shadow: 5px 5px 16px #c3c3c3, -5px -5px 16px #fdfdfd;
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+}

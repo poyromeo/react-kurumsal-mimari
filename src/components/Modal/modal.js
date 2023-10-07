@@ -8,7 +8,6 @@ class ModalCls extends React.PureComponent {
   }
 
   render() {
-    console.log("this.props.isOpen", this.props.isOpen);
     return (
       <div className={`body-modal ${this.props.isOpen ? "open" : "closed"}`}>
         <div

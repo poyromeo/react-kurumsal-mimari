@@ -13,7 +13,6 @@ class RoutersCls extends React.PureComponent {
           <Route path="/" element={<HomeCls />}></Route>
           <Route path="/login" element={<LoginCls />}></Route>
           <Route path="/profile" element={<ProfileCls />}></Route>
-
           <Route path="/users" element={<ProfileCls />}></Route>
           <Route path="/products" element={<ProfileCls />}></Route>
           <Route path="/orders" element={<ProfileCls />}></Route>

@@ -25,6 +25,110 @@ const data = [
   },
 ];
 
+function Avatar(props) {
+  return (
+    <header className="_header">
+      <span className="navigation__group">
+        <img
+          className="profile"
+          src={require("../../assets/images/joe-doe-profile.png").default}
+          alt="Joe Doe Picture"
+        />
+      </span>
+      <div className="dropdown__wrapper hide dropdown__wrapper--fade-in none">
+        <div className="dropdown__group">
+          <div className="user-name">RECEP ORTA</div>
+          <div className="email">recpoy.orta@gmail.com</div>
+        </div>
+        <hr className="divider" />
+        <nav>
+          <ul>
+            <li>
+              <img
+                src={require("../../assets/images/profile.svg").default}
+                alt="Profile"
+              />
+              Profil
+            </li>
+            <li>
+              <img
+                src={require("../../assets/images/settings.svg").default}
+                alt="Settings"
+              />
+              Ayarlar
+            </li>
+          </ul>
+          <hr className="divider" />
+          <ul>
+            <li>
+              <img
+                src={require("../../assets/images/tutorials.svg").default}
+                alt="Tutorials"
+              />
+              Tutorials
+            </li>
+            <li>
+              {props.themeToogle === "dark" ? (
+                <i
+                  style={{
+                    fontSize: "21px",
+                    marginRight: 5,
+                  }}
+                  className="bx bx-moon"
+                ></i>
+              ) : (
+                <i
+                  style={{
+                    fontSize: "21px",
+                    marginRight: 5,
+                  }}
+                  className="bx bx-sun"
+                ></i>
+              )}
+
+              <div className="switch-box">
+                <Switch
+                  checked={props.themeToogle === "dark"}
+                  onChange={(e) => props.onChangeTheme(e)}
+                  defaultChecked
+                />
+              </div>
+            </li>
+            {/* <li>
+           <img
+             src={require("../../assets/images/help.svg").default}
+             alt="Help"
+           />
+           Help Center
+          </li> */}
+          </ul>
+          <hr className="divider" />
+          <ul>
+            {/* <li>
+           <img
+             src={require("../../assets/images/premium.svg").default}
+             alt="Premium"
+           />
+           Go Premium
+          </li> */}
+            <li
+              onClick={props.logout}
+              style={{
+                color: "#E3452F",
+              }}
+            >
+              <img
+                src={require("../../assets/images/logout.svg").default}
+                alt="Log Out"
+              />
+              Log out
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
+}
 class HeaderCls extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -38,29 +142,25 @@ class HeaderCls extends React.PureComponent {
     this.props.tokenControlLayoutFunc(false);
   };
 
-  toggleDropdown = () => {
-    const button = document.getElementById("button");
-    const buttonRect = button.getBoundingClientRect();
-    const chevron = document.getElementById("chevron");
-    const chevronRect = chevron.getBoundingClientRect();
-    const menuRight = buttonRect.right - chevronRect.right;
-    const menuTop = chevronRect.top - buttonRect.top;
+  componentDidMount() {
+    const profile = document.querySelector(".profile");
+    const dropdown = document.querySelector(".dropdown__wrapper");
 
-    const menu = document.getElementById("menu");
-    menu.style.top = `${menuTop}px`;
-    menu.style.right = `${menuRight}px`;
-    const dropdown = document.getElementById("dropdown");
+    profile.addEventListener("click", () => {
+      dropdown.classList.remove("none");
+      dropdown.classList.toggle("hide");
+    });
 
-    if (dropdown.classList.contains("open")) {
-      menu.style.top = `${menuTop}px`;
-      menu.style.right = `${menuRight}px`;
-    } else {
-      menu.style.top = `${button.clientHeight + 10}px`;
-      menu.style.right = 0;
-    }
+    document.addEventListener("click", (event) => {
+      const isClickInsideDropdown = dropdown.contains(event.target);
+      const isProfileClicked = profile.contains(event.target);
 
-    dropdown.classList.toggle("open");
-  };
+      if (!isClickInsideDropdown && !isProfileClicked) {
+        dropdown.classList.add("hide");
+        dropdown.classList.add("dropdown__wrapper--fade-in");
+      }
+    });
+  }
 
   render() {
     return (
@@ -90,64 +190,11 @@ class HeaderCls extends React.PureComponent {
           </div>
           <div className="right-box d-flex align-items-center">
             <NotificationCls data={data} />
-
-            <div className="dropdown me-2" id="dropdown">
-              <button id="button" onClick={() => this.toggleDropdown()}>
-                <i
-                  style={{
-                    fontSize: "26px",
-                  }}
-                  className="bx bx-user-circle"
-                ></i>
-                RECEP ORTA
-                <span
-                  style={{
-                    fontSize: "26px",
-                  }}
-                  id="chevron"
-                  class="chevron bx bx-chevron-down"
-                ></span>
-              </button>
-              <div id="menu" className="menu">
-                <button>
-                  {this.props.themeToogle === "dark" ? (
-                    <i
-                      style={{
-                        fontSize: "21px",
-                        marginRight: 5,
-                      }}
-                      className="bx bx-moon"
-                    ></i>
-                  ) : (
-                    <i
-                      style={{
-                        fontSize: "21px",
-                        marginRight: 5,
-                      }}
-                      className="bx bx-sun"
-                    ></i>
-                  )}
-
-                  <div className="switch-box">
-                    <Switch
-                      checked={this.props.themeToogle === "dark"}
-                      onChange={(e) => this.onChangeTheme(e)}
-                      defaultChecked
-                    />
-                  </div>
-                </button>
-                <button onClick={() => this.logoutFunc()}>
-                  <i
-                    style={{
-                      fontSize: "21px",
-                      marginRight: 5,
-                    }}
-                    class="bx bx-log-out"
-                  ></i>
-                  <span className="me-2">Çıkış yap</span>
-                </button>
-              </div>
-            </div>
+            <Avatar
+              logout={() => this.logoutFunc()}
+              themeToogle={this.props.themeToogle}
+              onChangeTheme={(e) => this.onChangeTheme(e)}
+            />
           </div>
         </div>
       </Header>
