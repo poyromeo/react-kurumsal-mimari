@@ -32,6 +32,8 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.9",
+    "ag-grid-community": "^30.2.0",
+    "ag-grid-react": "^30.2.0",
     "antd": "^5.9.2",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.0",

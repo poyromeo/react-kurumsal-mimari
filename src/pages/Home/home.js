@@ -1,49 +1,58 @@
 import { Layout } from "antd";
-import React, { Component } from "react";
-import CurrentDataBoxCls from "../../components/CurrentDataBox/informationBox";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
-import VerticalBarChartCls from "../../components/VerticalBarChart/verticalBarChart";
+import React, { useContext } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import AGGridTableCls from "../../components/AGGrid/AgGridTable";
+import CurrentDataBoxCls from "../../components/CurrentDataBox/informationBox";
+import DoughnutChartCls from "../../components/DoughnutChart/DoughnutChart";
 import HorizonalBarChartCls from "../../components/HorizonelBarChart/horizonelBarChart";
-import AntMiniCalendarCls from "../../components/AntMiniClendar/antMiniCalendar";
+import VerticalBarChartCls from "../../components/VerticalBarChart/verticalBarChart";
+import * as constans from "../../utils/constants/constants";
+import { UseFetch } from "../../services/api";
+import HubContext from "../../utils/hooks/UseContext";
 const { Content } = Layout;
 
-export default class HomeCls extends Component {
-  render() {
-    return (
-      <Content style={{ overflow: "scroll" }}>
-        <Container fluid className="p-4">
-          <Row>
-            <Col sm={9}>
-              <Row>
-                <Col className="mb-4">
-                  <CurrentDataBoxCls />
-                </Col>
-                <Col className="mb-4">
-                  <CurrentDataBoxCls />
-                </Col>
-                <Col className="mb-4">
-                  <CurrentDataBoxCls />
-                </Col>
-                <Col className="mb-4">
-                  <CurrentDataBoxCls />
-                </Col>
-              </Row>
-              <Row>
-                <Col className="mb-4">
-                  <VerticalBarChartCls />
-                </Col>
-                <Col className="mb-4">
-                  <HorizonalBarChartCls />
-                </Col>
-              </Row>
-            </Col>
-            <Col sm={3}>
-              <AntMiniCalendarCls></AntMiniCalendarCls>
-            </Col>
-          </Row>
-        </Container>
-      </Content>
-    );
-  }
-}
+const HomeCls = () => {
+  const { data } = useContext(HubContext);
+
+  return (
+    <Content style={{ overflow: "scroll" }}>
+      <Container fluid className="p-4">
+        <Row>
+          <Col className="mb-4">
+            <CurrentDataBoxCls />
+          </Col>
+          <Col className="mb-4">
+            <CurrentDataBoxCls />
+          </Col>
+          <Col className="mb-4">
+            <CurrentDataBoxCls />
+          </Col>
+          <Col className="mb-4">
+            <CurrentDataBoxCls />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm lg="6" className="mb-4">
+            <VerticalBarChartCls />
+          </Col>
+          <Col sm lg="6" className="mb-4">
+            <HorizonalBarChartCls />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={8} className="mb-4">
+            <AGGridTableCls rowData={data} />
+          </Col>
+          <Col sm={4} className="mb-4">
+            <div className="container-box" style={constans.BOX_SHADOW_BOX}>
+              <DoughnutChartCls />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </Content>
+  );
+};
+
+export default HomeCls;
