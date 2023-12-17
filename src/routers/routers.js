@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import BigCalendarCls from "../pages/Calendar/calendar";
 import HomeCls from "../pages/Home/home";
 import LoginCls from "../pages/Login/login";
 import ProfileCls from "../pages/Profile/profile";
-import BigCalendarCls from "../pages/Calendar/calendar";
 
 class RoutersCls extends React.PureComponent {
   render() {

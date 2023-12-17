@@ -8,12 +8,11 @@ import DoughnutChartCls from "../../components/DoughnutChart/DoughnutChart";
 import HorizonalBarChartCls from "../../components/HorizonelBarChart/horizonelBarChart";
 import VerticalBarChartCls from "../../components/VerticalBarChart/verticalBarChart";
 import * as constans from "../../utils/constants/constants";
-import { UseFetch } from "../../services/api";
 import HubContext from "../../utils/hooks/UseContext";
 const { Content } = Layout;
 
 const HomeCls = () => {
-  const { data } = useContext(HubContext);
+  const { data, columnDefs } = useContext(HubContext);
 
   return (
     <Content style={{ overflow: "scroll" }}>
@@ -42,7 +41,7 @@ const HomeCls = () => {
         </Row>
         <Row>
           <Col sm={8} className="mb-4">
-            <AGGridTableCls rowData={data} />
+            <AGGridTableCls rowData={data} columnDefs={columnDefs} />
           </Col>
           <Col sm={4} className="mb-4">
             <div className="container-box" style={constans.BOX_SHADOW_BOX}>
