@@ -66,7 +66,9 @@ class LoginCls extends React.PureComponent {
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <a href="#">Parolanızı mı unuttunuz?</a>
-            <button onClick={this.props.tokenControl(true)}> Giriş Yap</button>
+            <button onClick={() => this.props.tokenControl(true)}>
+              Giriş Yap
+            </button>
           </div>
         </div>
         <div className="overlay-container">

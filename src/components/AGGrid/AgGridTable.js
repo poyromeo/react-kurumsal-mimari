@@ -6,7 +6,7 @@ import "./AgGridTable.css";
 
 const AGGridTableCls = ({ rowData, columnDefs }) => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
-  const gridStyle = useMemo(() => ({ height: "400px", width: "100%" }), []);
+  const gridStyle = useMemo(() => ({ height: "405px", width: "100%" }), []);
 
   const defaultColDef = useMemo(() => {
     return {

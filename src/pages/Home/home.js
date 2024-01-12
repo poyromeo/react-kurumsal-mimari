@@ -12,7 +12,7 @@ import HubContext from "../../utils/hooks/UseContext";
 const { Content } = Layout;
 
 const HomeCls = () => {
-  const { data, columnDefs } = useContext(HubContext);
+  const { agDataGrid, columnDefs } = useContext(HubContext);
 
   return (
     <Content style={{ overflow: "scroll" }}>
@@ -41,7 +41,7 @@ const HomeCls = () => {
         </Row>
         <Row>
           <Col sm={8} className="mb-4">
-            <AGGridTableCls rowData={data} columnDefs={columnDefs} />
+            <AGGridTableCls rowData={agDataGrid} columnDefs={columnDefs} />
           </Col>
           <Col sm={4} className="mb-4">
             <div className="container-box" style={constans.BOX_SHADOW_BOX}>

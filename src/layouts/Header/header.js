@@ -94,23 +94,9 @@ function Avatar(props) {
                 />
               </div>
             </li>
-            {/* <li>
-           <img
-             src={require("../../assets/images/help.svg").default}
-             alt="Help"
-           />
-           Help Center
-          </li> */}
           </ul>
           <hr className="divider" />
           <ul>
-            {/* <li>
-           <img
-             src={require("../../assets/images/premium.svg").default}
-             alt="Premium"
-           />
-           Go Premium
-          </li> */}
             <li
               onClick={props.logout}
               style={{

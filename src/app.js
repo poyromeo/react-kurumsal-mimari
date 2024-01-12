@@ -1,19 +1,25 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy } from "react";
 import "./app.css";
 import LoadingOverlay from "./components/Loader/loadingOverview";
 import { UseHubContextProvider } from "./utils/hooks/UseContext";
 
 const LoginCls = lazy(() => import("./pages/Login/login"));
 const LayoutCls = lazy(() => import("./layouts/layout"));
+const SplashCls = lazy(() => import("./pages/Splash/splash"));
 
-function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [splashLoading, setSplashLoading] = useState(false);
+class App extends React.PureComponent {
+  state = {
+    isLoading: false,
+    splashLoading: false,
+  };
 
-  const tokenControlFunc = (value) => {
-    setIsLoading(true);
-    setSplashLoading(true);
+  tokenControlFunc = (value) => {
+    console.log("token", value);
 
+    this.setState({
+      isLoading: true,
+      splashLoading: true,
+    });
     setTimeout(() => {
       localStorage.setItem(
         "token",
@@ -21,24 +27,30 @@ function App() {
           ? "asdfghjkldıfuhvcjdkuryfhvncmkdeoırufhjkdloeırfujcmkdloeıurfjsdsdsds"
           : ""
       );
+      this.setState({
+        isLoading: false,
+        splashLoading: false,
+      });
     }, 1500);
-    setIsLoading(false);
-    setSplashLoading(false);
+    console.log("localStorage", localStorage.getItem("token"));
   };
 
-  return (
-    <UseHubContextProvider>
-      <Suspense fallback={<LoadingOverlay isLoading={isLoading} />}>
-        {splashLoading ? (
-          <SplashCls />
-        ) : localStorage.getItem("token") === "" ? (
-          <LoginCls tokenControl={() => tokenControlFunc} />
-        ) : (
-          <LayoutCls tokenControlAppFunc={tokenControlFunc} />
-        )}
-      </Suspense>
-    </UseHubContextProvider>
-  );
+  render() {
+    return (
+      <UseHubContextProvider>
+        <LoadingOverlay isLoading={this.state.isLoading} />
+        <Suspense>
+          {this.state.splashLoading ? (
+            <SplashCls />
+          ) : localStorage.getItem("token") === "" ? (
+            <LoginCls tokenControl={(e) => this.tokenControlFunc(e)} />
+          ) : (
+            <LayoutCls tokenControlAppFunc={(e) => this.tokenControlFunc(e)} />
+          )}
+        </Suspense>
+      </UseHubContextProvider>
+    );
+  }
 }
 
 export default App;
