@@ -1,3 +1,5 @@
+export const API_URL = "http://192.168.68.53:9000/";
+
 export const BOX_SHADOW_BOX = {
   display: "flex",
   background: "#e0e0e0",
@@ -5,7 +7,7 @@ export const BOX_SHADOW_BOX = {
   width: " 100%",
   padding: " 15px",
   borderRadius: "10px",
-  height: "399px",
+  height: "400px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

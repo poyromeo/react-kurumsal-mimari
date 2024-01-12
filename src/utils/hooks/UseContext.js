@@ -1,13 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import { UseFetch } from "../../services/api";
 const HubContext = createContext([]);
 
 export const UseHubContextProvider = ({ children }) => {
-  const { data, isPending, error } = UseFetch(
-    "https://www.ag-grid.com/example-assets/olympic-winners.json"
-  );
+  const [agDataGrid, setAgDataGrid] = useState([]);
 
-  const columnDefs = [
+  const [columnDefs] = useState([
     { field: "athlete", minWidth: 170 },
     { field: "age" },
     { field: "country" },
@@ -18,10 +15,20 @@ export const UseHubContextProvider = ({ children }) => {
     { field: "silver" },
     { field: "bronze" },
     { field: "total" },
-  ];
+  ]);
+
+  useEffect(() => {
+    fetch("https://www.ag-grid.com/example-assets/olympic-winners.json")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setAgDataGrid(data);
+      });
+  }, []);
 
   return (
-    <HubContext.Provider value={{ data, isPending, error, columnDefs }}>
+    <HubContext.Provider value={{ agDataGrid, columnDefs }}>
       {children}
     </HubContext.Provider>
   );
